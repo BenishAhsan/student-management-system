@@ -59,7 +59,7 @@ src/
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/student-management-system.git
+git clone https://github.com/BenishAhsan/student-management-system.git
 cd student-management-system
 npm install
 npm start
