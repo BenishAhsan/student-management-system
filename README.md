@@ -7,8 +7,8 @@ A React.js web application for managing student records with full CRUD functiona
 ## Tech Stack
 
 - **React.js** (Create React App)
-- **React Router v6** for navigation
-- **Bootstrap 5** for UI styling
+- **React Router DOM v6** for navigation
+- **Bootstrap** for UI styling and responsiveness
 - **LocalStorage** for data persistence
 
 ---
@@ -16,10 +16,10 @@ A React.js web application for managing student records with full CRUD functiona
 ## Features
 
 - Add, edit, and delete student records
-- View all students in a dynamic list
+- View all students in a card-based list
 - Form validation with inline error messages
 - Data persists across browser sessions via LocalStorage
-- Responsive layout using Bootstrap
+- Fully responsive layout using Bootstrap
 - 404 page for undefined routes
 
 ---
@@ -28,11 +28,12 @@ A React.js web application for managing student records with full CRUD functiona
 
 ```
 src/
-├── components/       # Reusable UI components (Form, StudentCard, Navbar, etc.)
-├── pages/            # Route-level screens (Home, StudentList, AddStudent, NotFound)
-├── utils/            # Helper functions (storage.js for LocalStorage operations)
+├── components/       # Reusable UI components (StudentCard, Navigation, Button, FormGroup)
+├── pages/            # Route-level screens (Home, AddStudent, EditStudent, NotFound)
+├── utils/            # Helper functions (localStorage.js for read/write operations)
 ├── App.js            # Route configuration
-└── index.js          # App entry point
+├── index.js          # App entry point
+└── index.css         # Global styles
 ```
 
 ---
@@ -41,10 +42,10 @@ src/
 
 | Path | Page | Description |
 |------|------|-------------|
-| `/` | Home | Landing page with summary |
-| `/students` | Student List | View, edit, and delete records |
+| `/` | Home | Lists all students in card format |
 | `/add` | Add Student | Form to add a new student |
-| `*` | 404 | Catch-all for undefined routes |
+| `/edit/:id` | Edit Student | Edit an existing student record |
+| `*` | Not Found | 404 page for invalid routes |
 
 ---
 
@@ -72,22 +73,26 @@ The app runs at `http://localhost:3000`.
 
 - `useState` manages form inputs and the student records array
 - `useEffect` loads data from LocalStorage on initial render and syncs on every update
-- Props are passed between parent pages and child components for shared state
+- Props passed between parent pages and child components for shared state
 
 ---
 
 ## Data Persistence
 
-All student records are stored in the browser's LocalStorage under the key `students`. No backend or database is required. Data survives page refreshes and browser restarts.
+All student records are stored in the browser's LocalStorage. No backend or database required. Data survives page refreshes and browser restarts.
 
 ---
 
-## Design Notes
+## Design Notes (MVC Mapping)
 
 This project follows an MVC-inspired structure adapted for React:
 
-- **Model** — LocalStorage acts as the data layer; `utils/storage.js` handles all read/write operations
+- **Model** — LocalStorage is the data layer; `utils/localStorage.js` handles all read/write operations
 - **View** — Components in `components/` and `pages/` render the UI
-- **Controller** — Event handlers and state logic inside page-level components coordinate data flow
+- **Controller** — Event handlers and state logic in page-level components coordinate data flow between model and view
 
 ---
+
+## Author
+
+Binash Ahsan, Information Technology University, Lahore
